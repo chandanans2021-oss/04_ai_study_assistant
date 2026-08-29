@@ -1,0 +1,29 @@
+<!doctype html>
+<html><head><title>AI Study Assistant</title></head>
+<body>
+<h1>AI Study Assistant</h1>
+
+<form method="post" enctype="multipart/form-data">
+<input type="hidden" name="action" value="upload">
+<input type="file" name="file" accept=".pdf" required>
+<button>Upload Study Material</button>
+</form>
+
+<hr>
+<form method="post">
+<input type="hidden" name="action" value="ask">
+<input name="question" size="70" placeholder="Ask about the study material" required>
+<button>Ask</button>
+</form>
+
+{% if result %}
+{% if result.error %}<p style="color:red">{{ result.error }}</p>{% endif %}
+{% if result.message %}<p>{{ result.message }}</p>{% endif %}
+{% if result.question %}
+<h3>Question</h3><p>{{ result.question }}</p>
+<h3>Research Agent</h3><p>{{ result.research }}</p>
+<h3>Analysis Agent</h3><p>{{ result.analysis }}</p>
+<h3>Final Reviewed Answer</h3><p>{{ result.final }}</p>
+{% endif %}
+{% endif %}
+</body></html>
